@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
-  background-color: #f8f3df; /* Un color de fondo suave */
+  background-color: #ffffff; /* Un color de fondo suave */
 }
+
+@font-face {
+  font-family: "rocksalt" ;
+  src: url("../src/assets/fonts/RockSalt-Regular.ttf");
+}
+
+@font-face {
+  font-family: "spicy" ;
+  src: url("../src/assets/fonts/SpicyRice-Regular.ttf");
+}
+
+@keyframes cascade {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-cascade {
+  animation: cascade 0.5s ease-in-out forwards;
+  opacity: 0;
+}
+
