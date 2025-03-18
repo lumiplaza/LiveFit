@@ -22,14 +22,14 @@ const Navbar = () => {
     <nav position="fixed">
       <Toolbar className="text-white flex justify-between bg-gradient-to-b from-violet-900 to-violet-400">
         {/* Contenedor para "Fitness Life" */}
-        <div className=" flex flex-col mt-2 font-rocksalt font-[1000]">
+        <div className=" flex flex-col mt-2 font-rocksalt text-3xl font-[1000]">
           
           {/* Columna para "FITNESS" */}
-          <div className="flex flex-col items-start mr-1 mb-12 ml-8">
+          <div className="flex flex-col  items-start mr-1 mb-12 ml-8">
             {fitnessLetters.map((letter, index) => (
               <span
                 key={index}
-                className={`text-white font-rocksalt ${
+                className={`text-white  font-rocksalt ${
                   animate ? "animate-cascade" : ""
                 }`}
                 style={{ animationDelay: `${index * 0.3}s` }}
@@ -61,42 +61,53 @@ const Navbar = () => {
 
         {/* Botones alineados verticalmente */}
         <div className="flex flex-col gap-16 mr-20">
-        <Button
-            color="inherit"
-            component={Link}
-            to="/entrenamiento"
-            sx={{ fontFamily: "rocksalt, sans-serif", fontSize: "16px" }}
-            className="text-white hover:bg-[#8B2E4D] normal-case"
-          >
-            Inicio
-          </Button>
+          {[
+            { to: "/entrenamiento", label: "Inicio" },
+            { to: "/entrenamiento", label: "Entrenamiento" },
+            { to: "/nutricion", label: "Nutrición" },
+            { to: "/contacto", label: "Contacto" },
+          ].map(({ to, label }, index) => (
+          
           <Button
+            key={index}
             color="inherit"
             component={Link}
-            to="/entrenamiento"
-            sx={{ fontFamily: "rocksalt, sans-serif", fontSize: "16px" }}
-            className="text-white hover:bg-[#8B2E4D] normal-case"
+            to={to}
+            sx={{
+            fontFamily: "rocksalt, sans-serif",
+            fontSize: "16px",
+            transition: "all 0.3s ease-in-out",
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: "8px",
+            padding: "10px 20px",
+              "&:hover": {
+                backgroundColor: "#c1426c",
+                color: "#fff",
+                transform: "scale(1.05)",
+                boxShadow: "0px 4px 15px rgba(139, 46, 77, 0.5)",
+              },
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                width: "100%",
+                height: "2px",
+                backgroundColor: "#fff",
+                bottom: "0",
+                left: "0",
+                transform: "scaleX(0)",
+                transformOrigin: "left",
+                transition: "transform 0.3s ease-in-out",
+              },
+              "&:hover::after": {
+                transform: "scaleX(1)",
+              },
+            }}
+            className="text-white normal-case"
           >
-            Entrenamiento
+            {label}
           </Button>
-          <Button
-            color="inherit"
-            component={Link}
-            to="/nutricion"
-            sx={{ fontFamily: "rocksalt, sans-serif", fontSize: "16px" }}
-            className="text-white hover:bg-[#8B2E4D] normal-case"
-          >
-            Nutrición
-          </Button>
-          <Button
-            color="inherit"
-            component={Link}
-            to="/contacto"
-            sx={{ fontFamily: "rocksalt, sans-serif", fontSize: "16px" }}
-            className="text-white hover:bg-[#8B2E4D] normal-case"
-          >
-            Contacto
-          </Button>
+          ))}
         </div>
       </Toolbar>
     </nav>
